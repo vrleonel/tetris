@@ -35,9 +35,26 @@ $(document).keydown(function(e) {
     $(".square-1").each(function(a){
       top_now = $(this).position().top;
       left_now = $(this).position().left;
-      $(this).css({ top: top_now+q, left: l });
+      $(this).css({ top: top_now+q, left: left_now });
     });
   }
+  
+  if(e.keyCode == 37){
+    $(".square-1").each(function(a){
+      top_now = $(this).position().top;
+      left_now = $(this).position().left;
+      $(this).css({ top: top_now, left: left_now-q });
+    });
+  }
+
+  if(e.keyCode == 39){
+    $(".square-1").each(function(a){
+      top_now = $(this).position().top;
+      left_now = $(this).position().left;
+      $(this).css({ top: top_now, left: left_now+q });
+    });
+  }
+  
   
 });
 
