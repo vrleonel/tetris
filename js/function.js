@@ -6,7 +6,7 @@
 // 65 A
 
 var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
-q = 32;
+q = 31;
 
 $(document).ready(function(){
   $("button").click(function(event){
@@ -17,7 +17,7 @@ $(document).ready(function(){
     l = 4*q; 
     t = -q; 
     $(".square-1").each(function(a){   
-      $(this).css({ top: t+=31, left: l });
+      $(this).css({ top: t+=q, left: l });
       //console.log($(this).position().top);
     });
     
@@ -28,13 +28,14 @@ $(document).ready(function(){
 });
 
 // Teclas
-t = 30;
 $(document).keydown(function(e) {
   //alert(e.keyCode);
   
   if(e.keyCode == 40){
-    $(".square-1").each(function(a){   
-      $(this).css({ top: t+=q, left: l });
+    $(".square-1").each(function(a){
+      top_now = $(this).position().top;
+      left_now = $(this).position().left;
+      $(this).css({ top: top_now+q, left: l });
     });
   }
   
