@@ -6,22 +6,23 @@
 // 65 A
 
 var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+q = 32;
 
 $(document).ready(function(){
   $("button").click(function(event){
-    $("#teste").toggle();
+    spear();
   });
 
   function spear(){
-    l = 50; 
-    t = 30; 
+    l = 4*q; 
+    t = -q; 
     $(".square-1").each(function(a){   
-      $(this).css({ top: t+=32, left: 2 });
+      $(this).css({ top: t+=31, left: l });
       //console.log($(this).position().top);
     });
     
   }
-  
+
   spear();
   
 });
@@ -33,8 +34,9 @@ $(document).keydown(function(e) {
   
   if(e.keyCode == 40){
     $(".square-1").each(function(a){   
-      $(this).css({ top: t+=32, left: 2 });
+      $(this).css({ top: t+=q, left: l });
     });
   }
   
 });
+
