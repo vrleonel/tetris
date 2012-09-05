@@ -6,17 +6,24 @@ body{
 #teste{
   display:none;
 }
-
-.square-1{
+.sq{ 
   border-width: 10px;
-  border-style: solid;
-  border-color: #CC0000 #AA0000;
-  background-color: #FF0000;
-  margin:1px;
   height: 10px;
   width:10px;
-  position:absolute;
+  position:absolute;  
+  outline : 1px solid #000;
+  border-style: solid;
+}
+
+.red{
+  border-color: #CC0000 #AA0000;
+  background-color: #FF0000;
 } 
+
+.blue{
+  border-color: #0000CC #0000AA;
+  background-color: #0000FF;
+}
 
 .position{
   top:34px;
