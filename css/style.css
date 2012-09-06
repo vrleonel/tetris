@@ -1,11 +1,9 @@
 /* Novo projeto de Tetris */
 body{
   background: #C0C0C0;
+  font-family: tahoma;
 }
 
-#teste{
-  display:none;
-}
 .sq{ 
   border-width: 10px;
   height: 10px;
@@ -16,26 +14,47 @@ body{
 }
 
 .red{
-  border-color: #CC0000 #AA0000;
+  border-color: #CC0000 #AA0000 #AA0000 #CC0000;
   background-color: #FF0000;
 } 
 
 .blue{
-  border-color: #0000CC #0000AA;
+  border-color: #0000CC #0000AA #0000AA #0000CC ;
   background-color: #0000FF;
 }
 
-.position{
-  top:34px;
-  left:0px;
+.gray{
+  border-color: lightgrey grey grey lightgrey ;
+  background-color: silver;
 }
 
-.left{
-  float:left;
+#game{
+  width:500px;
+  margin: 0 auto;
+
 }
 #screen{
   border: 2px solid #000;
   width: 600px;
   height: 600px;
   position:relative;
+  float:left;
+}
+
+#pieces{
+  width: 150px;
+  height: 600px;
+  border: 2px solid #000;
+  position:relative;
+  float: right;
+  
+}
+#pieces h2{
+  text-align:center;
+  padding:0;
+  margin:0;
+}
+
+.hook_l, .hook_r, .square, .arrow, .spear, .sneak{
+  position: absolute;
 }
