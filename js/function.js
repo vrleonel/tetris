@@ -14,58 +14,46 @@ function getPositions(){ // Pega a posição atual da peca e adiciona a um array
 }
 
 function spear(){ //Cria a peca spear
-  l = 4*sq; 
-  t = -sq;
-  
-  for (i=0; i<4; i++){
-    $('<div>')
-    .addClass('sq red')
-    .appendTo('#screen')
-    .css({ top: t+=sq, left: l });
-  }
+  var positions = [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 3, left: 0}];
+  create_piece(name, positions, "blue");  
 }
 
 function square(){
-  l = 0; 
-  t = 0;
-  $('<div>').addClass('sq blue').appendTo(land).css({ top: t, left: l });
-  $('<div>').addClass('sq blue').appendTo(land).css({ top: t+sq, left: l });
-  $('<div>').addClass('sq blue').appendTo(land).css({ top: t, left: l+sq });
-  $('<div>').addClass('sq blue').appendTo(land).css({ top: t+sq, left: l+sq });
-  
-  
+  var positions = [{top: 0, left: 0},{top: 1, left: 0},{top: 0, left: 1},{top: 1, left: 1}];
+  create_piece(name, positions, "blue");  
 }
 
 function hookL(name){
-  pos = {"left": 0, "top": 0};
-  container = $("<span>").addClass("hook_l "+name).appendTo("#pieces");
-  
-  $('<div>').addClass('sq blue').appendTo(container).css({ top: pos.top, left: pos.left });
-  $('<div>').addClass('sq blue').appendTo(container).css({ top: pos.top+(2*sq), left: pos.left+sq });
-  $('<div>').addClass('sq blue').appendTo(container).css({ top: pos.top, left: pos.left+sq });
-  $('<div>').addClass('sq blue').appendTo(container).css({ top: pos.top+sq, left: pos.left+sq });
+  var positions = [{top: 0, left: 0},{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1}];
+  create_piece(name, positions, "blue");
 }
 
-function hookR(){
-  container = $("<span>").addClass("hook_l "+name).appendTo("#pieces");
+function hookR(name){
+  var positions = [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 0, left: 1}];
+  create_piece(name, positions, "red");
 }
 
-function sneak(){
-  
+function sneakL(name){
+  var positions = [{top: 0, left: 0},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}];
+  create_piece(name, positions, "orange");
+}
+
+function sneakR(name){
+  var positions = [{top: 0, left: 1},{top: 0, left: 2},{top: 1, left: 0},{top: 1, left: 1}];
+  create_piece(name, positions, "green");
 }
 
 function arraw(name){
+  var positions = [{top: 0, left: 1},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}];
+  create_piece(name, positions, "gray");
+}
+
+function create_piece(name, positions, color){
   container = $("<span>").addClass("arrow "+ name).appendTo("#pieces");
-  var positions = [{top: 0, left: 1},
-                   {top: 1, left: 0},
-                   {top: 1, left: 1}, 
-                   {top: 1, left: 2}];
-                   
   $.each(positions, function(i, v){
-    $('<div>').addClass('sq gray').appendTo(container).css({ top: v.top*sq, left: v.left*sq });
+    $('<div>').addClass('sq '+color).appendTo(container).css({ top: v.top*sq, left: v.left*sq });
   });
 }
-  
 /* 
  Teclas
   38: cima,  40 baixo, 37 esquerda, 39 direita 
@@ -74,31 +62,15 @@ function arraw(name){
  function key_d(piece){
    pos = piece.position();
    piece.css({ top: pos.top+sq, left: pos.left});
-   // piece.each(function(a){
-   //   pos = $(this).position();
-   //   if( pos.top+sq  < $("#screen").height()){
-   //     $(this).css({ top: pos.top+sq, left: pos.left});
-   //   }
-   // });
    
  }
  function key_l(piece){
    pos = piece.position();
    piece.css({ top: pos.top, left: pos.left-sq});
-   // piece.each(function(a){
-   //   top_now = $(this).position().top;
-   //   left_now = $(this).position().left;
-   //   $(this).css({ top: top_now, left: left_now-sq });
-   // });
  }
  function key_r(piece){
    pos = piece.position();
    piece.css({ top: pos.top, left: pos.left+sq});
-   // piece.each(function(a){
-   //   top_now = $(this).position().top;
-   //   left_now = $(this).position().left;
-   //   $(this).css({ top: top_now, left: left_now+sq });
-   // });
  }
  function key_up(){}
 
@@ -107,8 +79,19 @@ $(document).ready(function(){
   game_screen();
   //spear();
   //square();
-  hookL("peca-1");
-  arraw("piece-2");
+  hookR("peca-1");
+  hookL("peca-2");
+  
+  arraw("peca-3");
+  sneakR("peca-4");
+  sneakL("peca-5");
+  
+  $(".peca-2").css({top: 2*sq, left:sq});
+  $(".peca-3").css({top: 6*sq, left:sq});
+  $(".peca-4").css({top: 9*sq, left:sq});
+  $(".peca-5").css({top: 12*sq, left:sq});
+  $(".peca-6").css({top: 15*sq, left:sq});
+  
   $(".peca-1").appendTo("#screen");
   getPositions();
 });
