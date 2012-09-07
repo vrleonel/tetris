@@ -89,6 +89,13 @@ $.fn.rotate = function(sum){
 
 $(document).ready(function(){  
 
+  json = {"spear": { 0: [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 3, left: 0}],
+                     1: [{top: 0, left: 0},{top: 0, left: 1},{top: 0, left: 2},{top: 0, left: 3}]
+          },
+          "square": { 0 : [{top: 0, left: 0},{top: 1, left: 0},{top: 0, left: 1},{top: 1, left: 1}]
+          }
+  }; 
+  console.log(json);
 
   game_screen();
   
