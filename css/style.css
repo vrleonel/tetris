@@ -32,10 +32,15 @@ body{
   border-color: #00CC00 #00AA00 #00AA00 #00CC00 ;
   background-color: #00FF00;
 }
-.orange{
+.yellow{
   border-color: #CC0 #990 #990 #CC0;
   background-color: #FFFF00;
 }
+.orange{
+  border-color: #F90 #F70 #F70 #F90;
+  background-color: #FFD9A0;
+}
+
 
 #game{
   width:500px;
