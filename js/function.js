@@ -1,11 +1,11 @@
 var sq = 31;
 var land = "#screen";
 var rotate = 0;
-var type = "spear";
+var type = $_GET["type"] != undefined ? $_GET["type"] : "sneakL";
 
 function game_screen(){ // Cria a tela do jogo no tamanho certo
-  $("#screen").height(sq*20);
-  $("#screen").width(sq*10);
+  $("#screen").height((sq*20)-1);
+  $("#screen").width((sq*10)-1);
 }
 
 function getPositions(){ // Pega a posição atual da peca e adiciona a um array
@@ -18,7 +18,7 @@ function getPositions(){ // Pega a posição atual da peca e adiciona a um array
 
 var json = 
   {"spear": {
-      0: [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 3, left: 0}],
+      0: [{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1},{top: 3, left: 1}],
       1: [{top: 0, left: 0},{top: 0, left: 1},{top: 0, left: 2},{top: 0, left: 3}]
     },
     "square": { 
@@ -38,18 +38,22 @@ var json =
       3: [{top: 0, left: 0},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}]
     },
     "sneakL": { 
-      0: [{top: 0, left: 0},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}]
+      0: [{top: 0, left: 1},{top: 1, left: 2},{top: 0, left: 0},{top: 1, left: 1}],
+      1: [{top: 1, left: 0},{top: 2, left: 0},{top: 0, left: 1},{top: 1, left: 1}]
     },
     "sneakR": { 
-      0: [{top: 0, left: 1},{top: 0, left: 2},{top: 1, left: 0},{top: 1, left: 1}]
+      0: [{top: 0, left: 1},{top: 0, left: 2},{top: 1, left: 0},{top: 1, left: 1}],
+      1: [{top: 0, left: 0},{top: 1, left: 1},{top: 2, left: 1},{top: 1, left: 0}]
+      
     },
     "arrow": { 
-      0: [{top: 0, left: 1},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}]
+      0: [{top: 0, left: 1},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}],
+      1: [{top: 0, left: 1},{top: 1, left: 1},{top: 1, left: 2},{top: 2, left: 1}],
+      2: [{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2},{top: 2, left: 1}],
+      3: [{top: 0, left: 1},{top: 1, left: 1},{top: 1, left: 0},{top: 2, left: 1}]
     },
     
 }; 
-
-console.log(json.spear);
 
 
 function spear(name){ //Cria a peca spear
@@ -107,6 +111,7 @@ function createPiece(name, positions, color){
 $.fn.rotate = function(){
 
   if(json[type][++rotate] === undefined){ rotate=0; }
+  console.log(rotate);
   var pos = json[type][rotate];
   this.children().each(function(a, i){
     $(this).css({top: pos[a].top*sq, left: pos[a].left*sq });
@@ -151,7 +156,7 @@ $(document).ready(function(){
   $(".peca-7").css({top: 15*sq, left:3*sq});
   
   
-  createPiece("peca-8", json[type][rotate], "orange");
+  createPiece("peca-8", json[type][rotate], "yellow");
   piece = $(".peca-8").css({top: 0, left:4*sq}).appendTo("#screen");
   //piece.rotate(10);
   getPositions();

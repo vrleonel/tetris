@@ -53,6 +53,7 @@ body{
   height: 600px;
   position:relative;
   float:left;
+  overflow:hidden;
 }
 
 #pieces{
