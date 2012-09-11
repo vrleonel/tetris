@@ -70,6 +70,6 @@ body{
   margin:0;
 }
 
-.hook_l, .hook_r, .square, .arrow, .spear, .sneak{
+.hookL, .hookR, .square, .arrow, .spear, .sneakL, .sneakR{
   position: absolute;
 }
