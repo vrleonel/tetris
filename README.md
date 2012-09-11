@@ -1,7 +1,7 @@
 Tetris HTML
 ===========
 
-  A Tetris game make using html, css and js
+  Smile make just with CSS and HTML
 
 Installation
 ------------

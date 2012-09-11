@@ -1,8 +1,7 @@
 var sq = 31;
 var land = "#screen";
 var rotate = 0;
-var type = "spear";
-
+var type = "hookR";
 var json = 
   {"spear": {
       0: [{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1},{top: 3, left: 1}],
@@ -65,21 +64,22 @@ function newPiece(name, type, color){
   
   return container;
 }
+
 function move2screen(piece){
   return piece.css({top: 0, left:4*sq}).appendTo("#screen");
 }
 
-$.fn.drop = function(){
-  pos = this.position();
-  console.log(pos.top);
-    for(var i = 0; i < 20; i ++){
-    this.animate({
-      top: pos.top + i*sq
-    });
-    this.animate({top: pos.top + i*sq}, 300);
+var n = 0;
+$.fn.drop = function(pos){
+  console.log(this.position().top);
+  this.css({top: '+=' + sq}); 
+  // this.animate({
+  //   top: '+='+sq
+  // }, 500);
+  
+  if(++n < 10){
+     window.setTimeout(this.drop(),1000);
   }
-  console.log(pos.top);
-  //debugger;
 }
 
 $.fn.rotate = function(){
@@ -106,33 +106,9 @@ $.fn.move_right = function(){
 
 
 $(document).ready(function(){  
-
-
   game_screen();
-  
-  // hookR("peca-1");
-  // hookL("peca-2");
-  // arraw("peca-3");
-  // sneakR("peca-4");
-  // sneakL("peca-5");
-  // square("peca-6");
-  // spear("peca-7");
-  // 
-  // 
-  // 
-  // $(".peca-2").css({top: 2*sq, left:sq});
-  // $(".peca-3").css({top: 6*sq, left:sq});
-  // $(".peca-4").css({top: 9*sq, left:sq});
-  // $(".peca-5").css({top: 12*sq, left:sq});
-  // $(".peca-6").css({top: 15*sq, left:0});
-  // $(".peca-7").css({top: 15*sq, left:3*sq});
-  
-  
   piece = newPiece("peca-8", type, "yellow");
   move2screen(piece);
-  
-  piece.drop();
-  //piece.rotate(10);
   getPositions();
 });
 
