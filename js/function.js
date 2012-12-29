@@ -1,9 +1,10 @@
-var sq = 31;
-var land = "#screen";
-var rotate = 0;
-var type = "hookR";
-var json = 
-  {"spear": {
+var sq = 31,
+    count = 1,
+    land = "#screen",
+    rotate = 0,
+    type = "hookR",
+    json = {
+   "spear": {
       0: [{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1},{top: 3, left: 1}],
       1: [{top: 0, left: 0},{top: 0, left: 1},{top: 0, left: 2},{top: 0, left: 3}]
     },
@@ -66,7 +67,16 @@ function newPiece(name, type, color){
 }
 
 function move2screen(piece){
-  return piece.css({top: 0, left:4*sq}).appendTo("#screen");
+
+  piece.css({top: 0, left:4*sq}).appendTo("#screen");
+
+  setInterval(function(){
+    console.log('interval')
+    piece.stop().animate({
+      top: '+='+sq//+ (parseInt(piece.css('top'), 10) + sq)
+    },350);
+  },1000);
+
 }
 
 var n = 0;
@@ -92,7 +102,7 @@ $.fn.rotate = function(){
 
 $.fn.move_down = function(){
   pos = piece.position();
-  piece.css({ top: pos.top+sq, left: pos.left});
+  piece.stop().css({ top: pos.top+sq, left: pos.left});
  
 }
 $.fn.move_left = function(){
@@ -104,12 +114,17 @@ $.fn.move_right = function(){
   piece.css({ top: pos.top, left: pos.left+sq});
 }
 
+function rePiece(){
+  piece = newPiece(("peca-"+count), type, "yellow");
+
+  move2screen(piece);
+  //getPositions();
+}
+
 
 $(document).ready(function(){  
   game_screen();
-  piece = newPiece("peca-8", type, "yellow");
-  move2screen(piece);
-  getPositions();
+  rePiece();
 });
 
 // Teclas
@@ -127,7 +142,11 @@ $(document).keydown(function(e) {
     piece.move_right();
   }
   
-  if(e.keyCode == 38){ // Right
+  // if(e.keyCode == 38){ // up
+  //   piece.rotate();
+  // }
+
+  if(e.keyCode == 32){ // space
     piece.rotate();
   }
   
