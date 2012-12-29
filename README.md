@@ -1,7 +1,7 @@
 Tetris HTML
 ===========
 
-  Smile make just with CSS and HTML
+  Tetris made just with CSS, HTML and JS
 
 Installation
 ------------
