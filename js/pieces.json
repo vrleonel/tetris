@@ -1,0 +1,35 @@
+{
+  "spear": {
+    "0" : [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 3, "left": 1}],
+    "1" : [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 0, "left": 3}]
+  },
+  "square": {
+    "0": [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
+  },
+  "hookL": {
+    "0": [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1}],
+    "1": [{"top": 0, "left": 2},{"top": 1, "left": 2},{"top": 1, "left": 1},{"top": 1, "left": 0}],
+    "2": [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 2, "left": 1}],
+    "3": [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2}]
+  },
+  "hookR": {
+    "0": [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1}],
+    "1": [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 2}],
+    "2": [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 2, "left": 0}],
+    "3": [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}]
+  },
+  "sneakL": {
+    "0": [{"top": 0, "left": 1},{"top": 1, "left": 2},{"top": 0, "left": 0},{"top": 1, "left": 1}],
+    "1": [{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
+  },
+  "sneakR": {
+    "0": [{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 0},{"top": 1, "left": 1}],
+    "1": [{"top": 0, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 1, "left": 0}]
+  },
+  "arrow": {
+    "0": [{"top": 0, "left": 1},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}],
+    "1": [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],
+    "2": [{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],
+    "3": [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 0},{"top": 2, "left": 1}]
+  }
+}

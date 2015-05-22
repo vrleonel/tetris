@@ -2,50 +2,24 @@ var sq = 31,
     count = 1,
     land = "#screen",
     rotate = 0,
-    type = "hookR",
-    json = {
+    type = $_GET['type'],
+    color = $_GET['color'],
+    json ={};
 
-   "spear": {
-      0: [{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1},{top: 3, left: 1}],
-      1: [{top: 0, left: 0},{top: 0, left: 1},{top: 0, left: 2},{top: 0, left: 3}]
-    },
-    "square": {
-      0: [{top: 0, left: 0},{top: 1, left: 0},{top: 0, left: 1},{top: 1, left: 1}]
-    },
-    "hookL": {
-      0: [{top: 0, left: 0},{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1}],
-      1: [{top: 0, left: 2},{top: 1, left: 2},{top: 1, left: 1},{top: 1, left: 0}],
-      2: [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 2, left: 1}],
-      3: [{top: 0, left: 0},{top: 1, left: 0},{top: 0, left: 1},{top: 0, left: 2}]
-    },
-    "hookR": {
-      0: [{top: 0, left: 0},{top: 1, left: 0},{top: 2, left: 0},{top: 0, left: 1}],
-      1: [{top: 0, left: 0},{top: 0, left: 1},{top: 0, left: 2},{top: 1, left: 2}],
-      2: [{top: 0, left: 1},{top: 1, left: 1},{top: 2, left: 1},{top: 2, left: 0}],
-      3: [{top: 0, left: 0},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}]
-    },
-    "sneakL": {
-      0: [{top: 0, left: 1},{top: 1, left: 2},{top: 0, left: 0},{top: 1, left: 1}],
-      1: [{top: 1, left: 0},{top: 2, left: 0},{top: 0, left: 1},{top: 1, left: 1}]
-    },
-    "sneakR": {
-      0: [{top: 0, left: 1},{top: 0, left: 2},{top: 1, left: 0},{top: 1, left: 1}],
-      1: [{top: 0, left: 0},{top: 1, left: 1},{top: 2, left: 1},{top: 1, left: 0}]
-    },
-    "arrow": {
-      0: [{top: 0, left: 1},{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2}],
-      1: [{top: 0, left: 1},{top: 1, left: 1},{top: 1, left: 2},{top: 2, left: 1}],
-      2: [{top: 1, left: 0},{top: 1, left: 1},{top: 1, left: 2},{top: 2, left: 1}],
-      3: [{top: 0, left: 1},{top: 1, left: 1},{top: 1, left: 0},{top: 2, left: 1}]
-    },
-};
 
+function loadJson() {
+    $.getJSON("js/pieces.json", function (data) {
+       console.log("DATA", data.spear);
+       json = data;
+       console.log(json);
+    });
+}
 function game_screen(){ // Cria a tela do jogo no tamanho certo
   $("#screen").height((sq*20)-1);
   $("#screen").width((sq*10)-1);
 }
 
-function getPositions(){ // Pega a posição atual da peca e adiciona a um array
+function getPositions(){ // Pega a posiï¿½ï¿½o atual da peca e adiciona a um array
   pieces = $(".sq");
   p_positions = [];
   pieces.each(function(a){
@@ -116,7 +90,7 @@ $.fn.move_right = function(){
 }
 
 function rePiece(){
-  piece = newPiece(("peca-"+count), type, "yellow");
+  piece = newPiece(("peca-"+count), type, color);
 
   move2screen(piece);
   //getPositions();
@@ -124,33 +98,7 @@ function rePiece(){
 
 
 $(document).ready(function(){
-  game_screen();
-  rePiece();
+  loadJson();
+  //game_screen();
+  //rePiece();
 });
-
-// Teclas
-$(document).keydown(function(e) {
-
-  if(e.keyCode == 40){ // Down
-    piece.move_down();
-  }
-
-  if(e.keyCode == 37){ // left
-    piece.move_left();
-  }
-
-  if(e.keyCode == 39){ // Right
-    piece.move_right();
-  }
-
-  // if(e.keyCode == 38){ // up
-  //   piece.rotate();
-  // }
-
-  if(e.keyCode == 32){ // space
-    piece.rotate();
-  }
-
-
-});
-
