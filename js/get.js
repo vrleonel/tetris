@@ -18,4 +18,3 @@ var $_GET = new function() {
   }
   return $get;
 }();
-
