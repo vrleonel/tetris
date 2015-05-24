@@ -1,12 +1,12 @@
-window.tetris = {
+window.t = {
   start: "start",
 
 
   init : function () {
-    console.log(tetris.start);
-  
+    console.log(t.start);
+
   }
 
 };
 
-tetris.init();
+t.init();

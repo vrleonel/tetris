@@ -1,4 +1,4 @@
-tetris.game = (function() {
+t.game = (function() {
   "use strict";
 
   var sq = 31,
@@ -9,12 +9,12 @@ tetris.game = (function() {
 
 
   function createPiece() {
-    
+
 
   }
 
   function bindEvents(){
-     tetris.pieces.loadPieces().then(function (data) {
+     t.pieces.loadPieces().then(function (data) {
       $itens = data;
       createPiece();
     });
@@ -28,4 +28,4 @@ tetris.game = (function() {
     },
   };
 })();
-tetris.game.init();
+t.game.init();

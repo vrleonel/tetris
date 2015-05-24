@@ -1,4 +1,4 @@
-tetris.keys = (function() {
+t.keys = (function() {
   "use strict";
 
   // Teclas
@@ -41,4 +41,4 @@ tetris.keys = (function() {
     }
   };
 })();
-tetris.keys.init();
+t.keys.init();

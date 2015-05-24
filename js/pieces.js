@@ -1,4 +1,4 @@
-tetris.pieces = (function() {
+t.pieces = (function() {
   "use strict";
 
   var $itens = {},
@@ -16,8 +16,8 @@ tetris.pieces = (function() {
         pieceName   = "piece-"+ count++  +", " + pieceType;
 
     //console.log( pieceType, piecePos, pieceLen )
-    actual = newPiece(pieceName, piecePos[pieceRotate], color[rand(color.length)]);
-    addToGame();
+    return newPiece(pieceName, piecePos[pieceRotate], color[rand(color.length)]);
+
   }
 
   function newPiece(name, positions, color){
@@ -42,7 +42,7 @@ tetris.pieces = (function() {
     return Math.floor((Math.random() * n ) + 0);
   }
 
-  function addToGame(){
+  function addToGame(actual){
     actual.css({top: 0, left:4*sq}).appendTo("#screen");
 
     setInterval(function(){
@@ -63,6 +63,7 @@ tetris.pieces = (function() {
      loadPieces().then(function (data) {
       $itens = data;
       createPiece();
+      addToGame(createPiece());
     });
 
 
@@ -74,7 +75,6 @@ tetris.pieces = (function() {
     },
     loadPieces: loadPieces,
     createPiece: createPiece,
-    rand
   };
 })();
-tetris.pieces.init();
+t.pieces.init();
