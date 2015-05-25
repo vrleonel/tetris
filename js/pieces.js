@@ -2,26 +2,34 @@ t.pieces = (function() {
   "use strict";
 
   var $itens = {},
-      type   = ["spear", "square", "hookL", "hookR", "sneakR", "sneakL", "arrow"],
+      type   = ["I", "O", "L", "J", "Z", "S", "T"],
       color  = ["red", "blue", "green", "gray", "yellow"],
-      actual = {},
+      $actual = {},
+      $next   = {},
       count  = 1,
-      sq     = 31;
+      sq     = 31,
+      stage  = "#stage",
+      side   = "#pieces";
 
   function createPiece() {
     var pieceType   = type[rand(7)],
         piecePos    = $itens[pieceType],
         pieceLen    = piecePos.length,
         pieceRotate = rand(pieceLen),
-        pieceName   = "piece-"+ count++  +", " + pieceType;
+        pieceName   = "piece-"+ count++  +", " + pieceType,
+        obj         = { "pieceType"   : pieceType,
+                        "piecePos"    : piecePos,
+                        "pieceRotate" : pieceRotate
+                      };
 
-    //console.log( pieceType, piecePos, pieceLen )
-    return newPiece(pieceName, piecePos[pieceRotate], color[rand(color.length)]);
+     $next = newPiece(pieceName, piecePos[pieceRotate], color[rand(color.length)]);
+     $.extend( $next, obj );
 
+     return $next;
   }
 
   function newPiece(name, positions, color){
-    var container = $("<span>").addClass(name).appendTo("#pieces");
+    var container = $("<span>").addClass(name).appendTo(side);
 
 
     $.each(positions, function(i, v){
@@ -42,31 +50,44 @@ t.pieces = (function() {
     return Math.floor((Math.random() * n ) + 0);
   }
 
-  function addToGame(actual){
-    actual.css({top: 0, left:4*sq}).appendTo("#screen");
+  function addToStage(){
+    $actual = $next;
+    $next = {};
 
-    setInterval(function(){
-      console.log('interval')
-      actual.stop().animate({
+    $actual.css({top: 0, left:4*sq}).appendTo(stage);
+
+    var n = 0,
+    interval = setInterval(function(){
+      n++;
+      if(n > 10) {
+        clearInterval(interval);
+      }
+
+      $actual.stop().animate({
         top: '+='+sq//+ (parseInt(piece.css('top'), 10) + sq)
       },350);
     },1000);
+
+
+
   }
 
   function loadPieces() {
     return $.getJSON("js/pieces.json", function (data) {
       $(document).trigger("loaded", data);
+      $itens = data;
     });
   }
 
   function bindEvents(){
      loadPieces().then(function (data) {
-      $itens = data;
       createPiece();
-      addToGame(createPiece());
+      addToStage();
     });
+  }
 
-
+  function stagePiece(){
+    return $actual;
   }
 
   return {
@@ -75,6 +96,7 @@ t.pieces = (function() {
     },
     loadPieces: loadPieces,
     createPiece: createPiece,
+    addToStage: addToStage,
+    stagePiece: stagePiece
   };
 })();
-t.pieces.init();

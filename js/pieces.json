@@ -1,32 +1,32 @@
 {
-  "spear": [
+  "I": [
      [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 3, "left": 1}],
      [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 0, "left": 3}]
   ],
-  "square": [
+  "O": [
     [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
   ],
-  "hookL": [
+  "J": [
     [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1}],
     [{"top": 0, "left": 2},{"top": 1, "left": 2},{"top": 1, "left": 1},{"top": 1, "left": 0}],
     [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 2, "left": 1}],
     [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2}]
   ],
-  "hookR": [
+  "L": [
     [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1}],
     [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 2}],
     [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 2, "left": 0}],
     [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}]
   ],
-  "sneakL": [
+  "S": [
     [{"top": 0, "left": 1},{"top": 1, "left": 2},{"top": 0, "left": 0},{"top": 1, "left": 1}],
     [{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
   ],
-  "sneakR": [
+  "Z": [
     [{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 0},{"top": 1, "left": 1}],
     [{"top": 0, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 1, "left": 0}]
   ],
-  "arrow": [
+  "T": [
     [{"top": 0, "left": 1},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}],
     [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],
     [{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],

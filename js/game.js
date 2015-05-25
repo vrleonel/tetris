@@ -14,11 +14,25 @@ t.game = (function() {
   }
 
   function bindEvents(){
-     t.pieces.loadPieces().then(function (data) {
-      $itens = data;
-      createPiece();
+    //  t.pieces.loadPieces().then(function (data) {
+    //   $itens = data;
+    //   createPiece();
+    // });
+    t.pieces.loadPieces();
+    
+    $(document).on("click", ".start-game", function (){
+      //console.log("start");
+      t.pieces.loadPieces();
+
     });
 
+    $(document).on("click", ".add-piece", function (){
+      t.pieces.createPiece();
+    });
+
+    $(document).on("click", ".move-to-stage", function (){
+      t.pieces.addToStage();
+    });
 
   }
 

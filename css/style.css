@@ -47,7 +47,7 @@ body{
   margin: 0 auto;
 
 }
-#screen{
+#stage{
   border: 2px solid #000;
   width: 300px;
   height: 600px;
@@ -56,20 +56,26 @@ body{
   overflow:hidden;
 }
 
-#pieces{
+#side{
   width: 150px;
   height: 600px;
   border: 2px solid #000;
   position:relative;
   float: right;
-
 }
-#pieces h2{
+
+#pieces{
+  height: 300px;
+}
+
+
+h2, h3{
   text-align:center;
   padding:0;
   margin:0;
 }
 
-.hookL, .hookR, .square, .arrow, .spear, .sneakL, .sneakR{
+
+.I, .L, .J, .S, .Z, .T, .O{
   position: absolute;
 }

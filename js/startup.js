@@ -1,5 +1,6 @@
 window.t = {
   start: "start",
+  SQ   : 31, 
 
 
   init : function () {
