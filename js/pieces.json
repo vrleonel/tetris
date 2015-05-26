@@ -12,7 +12,7 @@
     ],
     "color" : "orange"
   },
-  "J": {
+  "L": {
     "rotate": [
       [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1}],
       [{"top": 0, "left": 2},{"top": 1, "left": 2},{"top": 1, "left": 1},{"top": 1, "left": 0}],
@@ -21,7 +21,7 @@
     ],
     "color": "green"
   },
-  "L": {
+  "J": {
     "rotate": [
       [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1}],
       [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 2}],
@@ -30,14 +30,14 @@
     ],
     "color": "gray"
   },
-  "S": {
+  "Z": {
     "rotate" : [
       [{"top": 0, "left": 1},{"top": 1, "left": 2},{"top": 0, "left": 0},{"top": 1, "left": 1}],
       [{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
     ],
     "color" : "yellow"
   },
-  "Z": {
+  "S": {
     "rotate": [
       [{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 0},{"top": 1, "left": 1}],
       [{"top": 0, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 1, "left": 0}]

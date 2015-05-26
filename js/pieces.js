@@ -10,35 +10,23 @@ t.pieces = (function() {
       stage  = "#stage",
       side   = "#pieces";
 
-  function createPiece() {
-    var pieceType   = type[rand(7)],
+  function createPiece(tetramino) {
+    console.log(tetramino)
+    var pieceType   = (typeof tetramino === "undefined") ? type[rand(7)] : tetramino,
         piecePos    = $itens[pieceType].rotate,
         pieceLen    = piecePos.length,
         pieceRotate = rand(pieceLen),
-        pieceName   = "piece"+ count++  +", " + pieceType,
+        pieceName   = "piece" + count++  + " tetramino " + pieceType,
         obj         = { "pieceType"   : pieceType,
                         "piecePos"    : piecePos,
                         "pieceRotate" : pieceRotate
                       };
+    console.log("piece", pieceType);
 
     $next = newPiece(pieceName, piecePos[pieceRotate], $itens[pieceType].color);
     $.extend( $next, obj );
 
     return $next;
-  }
-
-  function maxTop(arr){
-    var pos = {"top": 0, "left": 0};
-    $.each(arr, function (){
-
-      if(this.top > pos.top){
-        pos.top = this.top;
-        pos.left = this.left;
-      }
-
-    });
-    return pos;
-    console.log("pos", arr);
   }
 
 
@@ -54,6 +42,20 @@ t.pieces = (function() {
     });
     console.log("container", container);
     return container;
+  }
+
+  function maxTop(arr){
+    var pos = {"top": 0, "left": 0};
+    $.each(arr, function (){
+
+      if(this.top > pos.top){
+        pos.top = this.top;
+        pos.left = this.left;
+      }
+
+    });
+    return pos;
+    console.log("pos", arr);
   }
 
 

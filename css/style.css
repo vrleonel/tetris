@@ -80,7 +80,7 @@ h2, h3{
 }
 
 
-.I, .L, .J, .S, .Z, .T, .O{
+.tetramino{
   position: absolute;
   outline: 1px solid #000;
 }

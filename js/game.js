@@ -34,6 +34,10 @@ t.game = (function() {
       t.pieces.addToStage();
     });
 
+    $(document).on("click", ".new-piece", function (){
+      t.pieces.createPiece($(this).data("type"));
+
+    });
   }
 
   return {
