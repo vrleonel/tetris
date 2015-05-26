@@ -1,7 +1,7 @@
 t.game = (function() {
   "use strict";
 
-  var sq = 31,
+  var sq = 30,
       count = 1,
       land = "#screen",
       rotate = 0,
@@ -19,7 +19,7 @@ t.game = (function() {
     //   createPiece();
     // });
     t.pieces.loadPieces();
-    
+
     $(document).on("click", ".start-game", function (){
       //console.log("start");
       t.pieces.loadPieces();

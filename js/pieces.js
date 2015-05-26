@@ -3,30 +3,44 @@ t.pieces = (function() {
 
   var $itens = {},
       type   = ["I", "O", "L", "J", "Z", "S", "T"],
-      color  = ["red", "blue", "green", "gray", "yellow"],
       $actual = {},
       $next   = {},
       count  = 1,
-      sq     = 31,
+      sq     = t.SQ,
       stage  = "#stage",
       side   = "#pieces";
 
   function createPiece() {
     var pieceType   = type[rand(7)],
-        piecePos    = $itens[pieceType],
+        piecePos    = $itens[pieceType].rotate,
         pieceLen    = piecePos.length,
         pieceRotate = rand(pieceLen),
-        pieceName   = "piece-"+ count++  +", " + pieceType,
+        pieceName   = "piece"+ count++  +", " + pieceType,
         obj         = { "pieceType"   : pieceType,
                         "piecePos"    : piecePos,
                         "pieceRotate" : pieceRotate
                       };
 
-     $next = newPiece(pieceName, piecePos[pieceRotate], color[rand(color.length)]);
-     $.extend( $next, obj );
+    $next = newPiece(pieceName, piecePos[pieceRotate], $itens[pieceType].color);
+    $.extend( $next, obj );
 
-     return $next;
+    return $next;
   }
+
+  function maxTop(arr){
+    var pos = {"top": 0, "left": 0};
+    $.each(arr, function (){
+
+      if(this.top > pos.top){
+        pos.top = this.top;
+        pos.left = this.left;
+      }
+
+    });
+    return pos;
+    console.log("pos", arr);
+  }
+
 
   function newPiece(name, positions, color){
     var container = $("<span>").addClass(name).appendTo(side);
@@ -50,26 +64,32 @@ t.pieces = (function() {
     return Math.floor((Math.random() * n ) + 0);
   }
 
+  /*
+  * Add to Stage
+  */
   function addToStage(){
     $actual = $next;
     $next = {};
 
-    $actual.css({top: 0, left:4*sq}).appendTo(stage);
+    var init = { "top": -2 * sq, "left": 4 *sq };
 
-    var n = 0,
-    interval = setInterval(function(){
-      n++;
-      if(n > 10) {
+    $actual.css({top: init.top, left: init.left }).appendTo(stage);
+
+    drop();
+
+  }
+
+  function drop() {
+    //var n = 0,
+    var interval = setInterval(function(){
+      //n++;
+      if(t.keys.moveDown($actual)) {
         clearInterval(interval);
       }
 
-      $actual.stop().animate({
-        top: '+='+sq//+ (parseInt(piece.css('top'), 10) + sq)
-      },350);
-    },1000);
-
-
-
+      //t.keys.moveDown($actual);
+      // $actual.stop().animate({top: '+='+sq},300);
+    },700);
   }
 
   function loadPieces() {

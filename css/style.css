@@ -5,12 +5,12 @@ body{
 }
 
 .sq{
-  border-width: 10px;
-  height: 10px;
-  width:10px;
+  border-width: 15px;
+  height: 15px;
+  width:15px;
   position:absolute;
-  outline : 1px solid #000;
   border-style: solid;
+  box-sizing: border-box;
 }
 
 .red{
@@ -24,8 +24,8 @@ body{
 }
 
 .gray{
-  border-color:  silver grey grey silver ;
-  background-color: lightgrey;
+  border-color:  grey black black grey ;
+  background-color: gray;
 }
 
 .green{
@@ -39,6 +39,10 @@ body{
 .orange{
   border-color: #F90 #F70 #F70 #F90;
   background-color: #FFD9A0;
+}
+.cyan{
+  border-color: #00E5FF #00B8D4 #00B8D4 #00E5FF;
+  background-color: "#00BCD4";
 }
 
 
@@ -78,4 +82,5 @@ h2, h3{
 
 .I, .L, .J, .S, .Z, .T, .O{
   position: absolute;
+  outline: 1px solid #000;
 }

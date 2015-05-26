@@ -1,35 +1,56 @@
 {
-  "I": [
-     [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 3, "left": 1}],
-     [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 0, "left": 3}]
-  ],
-  "O": [
-    [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
-  ],
-  "J": [
-    [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1}],
-    [{"top": 0, "left": 2},{"top": 1, "left": 2},{"top": 1, "left": 1},{"top": 1, "left": 0}],
-    [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 2, "left": 1}],
-    [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2}]
-  ],
-  "L": [
-    [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1}],
-    [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 2}],
-    [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 2, "left": 0}],
-    [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}]
-  ],
-  "S": [
-    [{"top": 0, "left": 1},{"top": 1, "left": 2},{"top": 0, "left": 0},{"top": 1, "left": 1}],
-    [{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
-  ],
-  "Z": [
-    [{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 0},{"top": 1, "left": 1}],
-    [{"top": 0, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 1, "left": 0}]
-  ],
-  "T": [
-    [{"top": 0, "left": 1},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}],
-    [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],
-    [{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2},{"top": 2, "left": 1}],
-    [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 0},{"top": 2, "left": 1}]
-  ]
+  "I":{
+    "rotate" : [
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 3, "left": 0}],
+      [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 0, "left": 3}]
+    ],
+    "color" : "red"
+  },
+  "O":{
+    "rotate": [
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
+    ],
+    "color" : "orange"
+  },
+  "J": {
+    "rotate": [
+      [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1}],
+      [{"top": 0, "left": 2},{"top": 1, "left": 2},{"top": 1, "left": 1},{"top": 1, "left": 0}],
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 2, "left": 1}],
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2}]
+    ],
+    "color": "green"
+  },
+  "L": {
+    "rotate": [
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1}],
+      [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 2}],
+      [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 2, "left": 0}],
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}]
+    ],
+    "color": "gray"
+  },
+  "S": {
+    "rotate" : [
+      [{"top": 0, "left": 1},{"top": 1, "left": 2},{"top": 0, "left": 0},{"top": 1, "left": 1}],
+      [{"top": 1, "left": 0},{"top": 2, "left": 0},{"top": 0, "left": 1},{"top": 1, "left": 1}]
+    ],
+    "color" : "yellow"
+  },
+  "Z": {
+    "rotate": [
+      [{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 0},{"top": 1, "left": 1}],
+      [{"top": 0, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 1},{"top": 1, "left": 0}]
+    ],
+    "color" : "blue"
+  },
+  "T": {
+    "rotate" : [
+      [{"top": 0, "left": 1},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 1, "left": 2}],
+      [{"top": 0, "left": 0},{"top": 1, "left": 0},{"top": 1, "left": 1},{"top": 2, "left": 0}],
+      [{"top": 0, "left": 0},{"top": 0, "left": 1},{"top": 0, "left": 2},{"top": 1, "left": 1}],
+      [{"top": 0, "left": 1},{"top": 1, "left": 1},{"top": 1, "left": 0},{"top": 2, "left": 1}]
+    ],
+    "color" : "cyan"
+  }
 }
