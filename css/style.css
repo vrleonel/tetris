@@ -61,6 +61,7 @@ body{
   position:relative;
   float:left;
   overflow:hidden;
+  background: url('../img/bg.png') 0px 0px repeat;
 }
 
 #side{
