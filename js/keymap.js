@@ -12,6 +12,7 @@ t.keys = (function() {
     var pos = piece.position(),
         maxRight = pos.left + sq;
 
+
     // Verify pos > screen width
     piece.children().each(function(){
       if( maxRight < pos.left + $(this).position().left + sq ) {
@@ -36,6 +37,18 @@ t.keys = (function() {
     return maxDown;
   }
 
+  function maxRotate(piece, pos){
+    var position = piece.position(),
+        maxTop   = position.top,
+        maxLeft  = position.left;
+
+    $(pos).each(function (i, el) {
+      maxLeft = (maxLeft < position.left + el.left * sq) ? position.left + el.left * sq : maxLeft;
+      maxTop  = (maxTop < position.top + el.top * sq) ? position.top + el.top * sq : maxTop;
+    });
+
+    return { "top": maxTop, "left" : maxLeft };
+  }
   /*
    * Rotate Piece
    */
@@ -43,19 +56,17 @@ t.keys = (function() {
     var positions = piece.piecePos;
 
     if(positions[++piece.pieceRotate] === undefined){ piece.pieceRotate=0; }
-    var pos = positions[piece.pieceRotate];
+    var pos    = positions[piece.pieceRotate],
+        maxPos = maxRotate(piece, pos);
 
-    piece.children().each(function(a, i){
-      $(this).css({top: pos[a].top*sq, left: pos[a].left*sq });
-    });
-
-    if( maxRight(piece)  > t.STAGE_WIDTH ){
-      moveLeft(piece);
+    // Verify if is possible to rotate
+    if ( maxPos.left < t.STAGE_WIDTH && maxPos.top < t.STAGE_HEIGHT ) {
+      piece.children().each(function(a, i){
+        $(this).css({top: pos[a].top*sq, left: pos[a].left*sq });
+      });
     }
 
-    if(maxBottom(piece) > t.STAGE_HEIGHT ){
-      piece.css({ top: "-="+sq});
-    }
+
   }
 
   /*
@@ -66,24 +77,21 @@ t.keys = (function() {
     if( maxBottom(piece) + sq <= t.STAGE_HEIGHT  ){
       piece.css({ top: pos.top+sq, left: pos.left});
       //piece.stop().animate({ top: '+='+sq}, 300);
+      return false;
     }else{
       return true;
     }
-
-    console.log(maxBottom(piece));
   }
 
   /*
    * Move to Left
    */
   function moveLeft(piece){
-    var pos = piece.position(),
-        leftPos = 0;
+    var pos = piece.position();
 
     if(pos.left-sq >= 0){
-      leftPos = pos.left-sq;
+      piece.css({ left: '-=' + sq })
     }
-    piece.css({ top: pos.top, left: leftPos});
   }
 
   /*

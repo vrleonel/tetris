@@ -11,7 +11,7 @@ t.pieces = (function() {
       side   = "#pieces";
 
   function createPiece(tetramino) {
-    console.log(tetramino)
+    console.log(tetramino);
     var pieceType   = (typeof tetramino === "undefined") ? type[rand(7)] : tetramino,
         piecePos    = $itens[pieceType].rotate,
         pieceLen    = piecePos.length,
@@ -74,9 +74,9 @@ t.pieces = (function() {
     $next = {};
 
     var init = { "top": -2 * sq, "left": 4 *sq };
-
     $actual.css({top: init.top, left: init.left }).appendTo(stage);
 
+    createPiece();
     drop();
 
   }
@@ -87,6 +87,8 @@ t.pieces = (function() {
       //n++;
       if(t.keys.moveDown($actual)) {
         clearInterval(interval);
+
+        addToStage();
       }
 
       //t.keys.moveDown($actual);
