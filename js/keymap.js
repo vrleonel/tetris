@@ -83,13 +83,39 @@ t.keys = (function() {
     }
   }
 
+
+  function cross(piece, future){
+    var pos = piece.position(),
+        pass = true;
+
+    piece.children().each( function (idx1, val1) {
+      var tetra =  $(val1).position();
+
+      tetra.left += pos.left;
+      tetra.top += pos.top;
+
+      $.each(t.FIELD, function (idx2, val2) {
+        if(val2.top == (tetra.top + future.top) && val2.left == (tetra.left + future.left)  ){
+          pass = false;
+        }
+        console.log("top: "+ val2.top +" left: "+ val2.left, ' X ', " top: "+ tetra.top +" left: "+ tetra.left);
+
+      })
+
+    })
+
+    return pass;
+  }
   /*
    * Move to Left
    */
   function moveLeft(piece){
-    var pos = piece.position();
+    var pos = piece.position(),
+        pass = cross(piece, { top: 0, left: -t.SQ });
 
-    if(pos.left-sq >= 0){
+
+
+    if(pos.left-sq >= 0 && pass === true){
       piece.css({ left: '-=' + sq })
     }
   }

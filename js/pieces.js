@@ -38,6 +38,7 @@ t.pieces = (function() {
       $('<div>')
       .addClass('sq '+color)
       .appendTo(container)
+      .data("position", { top: "0", left: "0" })
       .css({ top: v.top*sq, left: v.left*sq });
     });
     console.log("container", container);
@@ -81,19 +82,34 @@ t.pieces = (function() {
 
   }
 
+
+  // Piece drop
   function drop() {
     //var n = 0,
     var interval = setInterval(function(){
       //n++;
       if(t.keys.moveDown($actual)) {
         clearInterval(interval);
-
-        addToStage();
+        mapTetramino();
+        //addToStage(); // add new piece into stage
       }
 
       //t.keys.moveDown($actual);
       // $actual.stop().animate({top: '+='+sq},300);
     },700);
+  }
+
+  // Remove from Span Add to Stage and Matrix map
+
+  function mapTetramino(){
+    var position = $actual.position();
+
+    $actual.children().each( function (idx , val) {
+      $(val).appendTo("#stage").css({top: "+=" + position.top, left: "+=" + position.left });
+      t.FIELD.push( $(val).position() );
+    });
+
+    $actual.remove();
   }
 
   function loadPieces() {
