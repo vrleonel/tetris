@@ -22,7 +22,9 @@ t.game = (function() {
 
     $(document).on("click", ".start-game", function (){
       //console.log("start");
-      t.pieces.loadPieces();
+      //t.pieces.loadPieces();
+      t.pieces.createPiece();
+      t.pieces.addToStage();
 
     });
 
