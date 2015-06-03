@@ -4,86 +4,59 @@ t.keys = (function() {
   var sq = t.SQ,
       stage = t.STAGE_WIDTH;
 
-
-  /*
-   * Verify with reach max right position
-   */
-  function maxRight(piece){
-    var pos = piece.position(),
-        maxRight = pos.left + sq;
-
-
-    // Verify pos > screen width
-    piece.children().each(function(){
-      if( maxRight < pos.left + $(this).position().left + sq ) {
-        maxRight = pos.left + $(this).position().left + sq;
-      }
-    });
-
-    return maxRight;
-  }
-
-  function maxBottom(piece){
-    var pos = piece.position(),
-        maxDown = pos.top + sq;
-
-    // Verify pos > screen width
-    piece.children().each(function(){
-      if( maxDown < pos.top + $(this).position().top + sq ) {
-        maxDown = pos.top + $(this).position().top + sq;
-      }
-    });
-
-    return maxDown;
-  }
-
   function maxRotate(piece, pos){
     var position = piece.position(),
-        maxTop   = position.top,
-        maxLeft  = position.left;
+        pass     = true;
 
     $(pos).each(function (i, el) {
-      maxLeft = (maxLeft < position.left + el.left * sq) ? position.left + el.left * sq : maxLeft;
-      maxTop  = (maxTop < position.top + el.top * sq) ? position.top + el.top * sq : maxTop;
+      var tetra =  {"left" : position.left + el.left * t.SQ, "top" : position.top + el.top * t.SQ};
+
+      if ( tetra.left >= 0 && tetra.left < t.STAGE_WIDTH && tetra.top < t.STAGE_HEIGHT ) {
+
+        $.each(t.FIELD, function (idx2, val2) {
+
+          if(val2.top == tetra.top && val2.left == tetra.left ){
+            return pass = false;
+          }
+
+        });
+
+      } else {  return pass = false; }
     });
 
-    return { "top": maxTop, "left" : maxLeft };
+    return pass;
   }
   /*
    * Rotate Piece
    */
   function rotatePiece(piece){
-    var positions = piece.piecePos;
+    var positions = piece.piecePos,
+        pass = false;
+        stateRotate = piece.pieceRotate;
 
     if(positions[++piece.pieceRotate] === undefined){ piece.pieceRotate=0; }
+
     var pos    = positions[piece.pieceRotate],
-        maxPos = maxRotate(piece, pos);
+        //maxPos = maxRotate(piece, pos);
+        pass   = maxRotate(piece, pos);
+
+        console.log(pass);
 
     // Verify if is possible to rotate
-    if ( maxPos.left < t.STAGE_WIDTH && maxPos.top < t.STAGE_HEIGHT ) {
+    if ( pass === true ) {
       piece.children().each(function(a, i){
         $(this).css({top: pos[a].top*sq, left: pos[a].left*sq });
       });
+    } else {
+      piece.pieceRotate > 0 ? positions[--piece.pieceRotate] : positions[piece.pieceRotate];
     }
 
 
   }
 
-  /*
-   * Move Fast Down
-   */
-  function moveDown(piece){
-    var pos = piece.position();
-    if( maxBottom(piece) + sq <= t.STAGE_HEIGHT  ){
-      piece.css({ top: pos.top+sq, left: pos.left});
-      //piece.stop().animate({ top: '+='+sq}, 300);
-      return false;
-    }else{
-      return true;
-    }
-  }
-
-
+  /*********************************
+   * Verify if the piece can cross
+   *********************************/
   function cross(piece, future){
     var pos = piece.position(),
         pass = true;
@@ -91,21 +64,40 @@ t.keys = (function() {
     piece.children().each( function (idx1, val1) {
       var tetra =  $(val1).position();
 
-      tetra.left += pos.left;
-      tetra.top += pos.top;
+      tetra.left += pos.left + future.left;
+      tetra.top += pos.top + future.top;
 
-      $.each(t.FIELD, function (idx2, val2) {
-        if(val2.top == (tetra.top + future.top) && val2.left == (tetra.left + future.left)  ){
-          pass = false;
-        }
-        console.log("top: "+ val2.top +" left: "+ val2.left, ' X ', " top: "+ tetra.top +" left: "+ tetra.left);
+      if(tetra.left >= 0 && tetra.left < t.STAGE_WIDTH && tetra.top < t.STAGE_HEIGHT  ){
 
-      })
-
-    })
+        $.each(t.FIELD, function (idx2, val2) {
+          if(val2.top == tetra.top && val2.left == tetra.left ){
+            return pass = false;
+          }
+        });
+      } else {
+        return pass = false;
+      }
+    });
 
     return pass;
   }
+
+  /*
+   * Move Fast Down
+   */
+  function moveDown(piece){
+    var pos = piece.position(),
+        pass = cross(piece, { top: t.SQ, left: 0 });
+
+    if( pass === true  ){
+      piece.css({ top: "+=" + t.SQ});
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+
   /*
    * Move to Left
    */
@@ -113,9 +105,7 @@ t.keys = (function() {
     var pos = piece.position(),
         pass = cross(piece, { top: 0, left: -t.SQ });
 
-
-
-    if(pos.left-sq >= 0 && pass === true){
+    if( pass === true){
       piece.css({ left: '-=' + sq })
     }
   }
@@ -125,10 +115,10 @@ t.keys = (function() {
    */
   function moveRight(piece){
     var pos = piece.position(),
-        max = maxRight(piece);
+        pass = cross(piece, { top: 0, left: t.SQ });
 
-    if( max  < t.STAGE_WIDTH ){
-      piece.css({ top: pos.top, left: pos.left+sq});
+    if( pass === true ){
+      piece.css({ left: "+=" + t.SQ});
     }
 
   }
