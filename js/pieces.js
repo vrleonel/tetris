@@ -122,7 +122,6 @@ t.pieces = (function() {
         fields = t.FIELD;
 
     $(t.FIELD).each(function(i,e){
-      console.log(e.top, e.left);
       var top = e.top;
       line[top] === undefined ? line[top] = [e.left] : line[top].push(e.left);
 
@@ -135,13 +134,50 @@ t.pieces = (function() {
 
     var filteredFields = fields.filter(function(fields) {
        return full.indexOf(fields.top) >= 0;
-    })
+    });
 
 
-    return filteredFields;
+    //return filteredFields;
+    return full;
   }
 
 
+  function sqCol() {
+    var col = [];
+    for(i = 0; i < 10; i++){
+      col.push(i*t.SQ)
+    }
+    return col;
+  }
+
+  // Remove Squares
+  function removeSq(){
+    var squares = $("#stage .sq"),
+        lines   = checkLine();
+
+
+    $.each(lines, function (i, v) {
+      console.log(v);
+      var el = squares.filter(function (value){
+        return $(this).position().top == v;
+      });
+      el.remove();
+    })
+
+
+    // Do a new filter like
+    // Math.max.apply(Math,lines);
+    //
+    //
+    // var el2 = $(".sq").filter(function (value){
+    //   var max = Math.max.apply(Math,lines);
+    //   return $(this).position().top < max;
+    // });
+    //
+    //
+    // el2.css({ top: "+="+ t.SQ})
+
+  }
 
 
 
@@ -171,6 +207,7 @@ t.pieces = (function() {
     createPiece: createPiece,
     addToStage: addToStage,
     stagePiece: stagePiece,
-    checkLine: checkLine
+    checkLine: checkLine,
+    removeSq: removeSq
   };
 })();
