@@ -31,26 +31,23 @@ t.keys = (function() {
    */
   function rotatePiece(piece){
     var positions = piece.piecePos,
-        pass = false;
+        pass = false,
         stateRotate = piece.pieceRotate;
 
-    if(positions[++piece.pieceRotate] === undefined){ piece.pieceRotate=0; }
+    if(positions[++stateRotate] === undefined){ stateRotate=0; }
 
     var pos    = positions[piece.pieceRotate],
-        //maxPos = maxRotate(piece, pos);
         pass   = maxRotate(piece, pos);
 
         console.log(pass);
 
     // Verify if is possible to rotate
     if ( pass === true ) {
+      piece.pieceRotate = stateRotate;
       piece.children().each(function(a, i){
         $(this).css({top: pos[a].top*sq, left: pos[a].left*sq });
       });
-    } else {
-      piece.pieceRotate > 0 ? positions[--piece.pieceRotate] : positions[piece.pieceRotate];
     }
-
 
   }
 
