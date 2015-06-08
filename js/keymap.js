@@ -4,6 +4,7 @@ t.keys = (function() {
   var sq = t.SQ,
       stage = t.STAGE_WIDTH;
 
+
   function maxRotate(piece, pos){
     var position = piece.position(),
         pass     = true;
@@ -36,7 +37,7 @@ t.keys = (function() {
 
     if(positions[++stateRotate] === undefined){ stateRotate=0; }
 
-    var pos    = positions[piece.pieceRotate],
+    var pos    = positions[stateRotate],
         pass   = maxRotate(piece, pos);
 
         console.log(pass);

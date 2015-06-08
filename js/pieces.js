@@ -112,6 +112,39 @@ t.pieces = (function() {
     $actual.remove();
   }
 
+
+  /*********
+  * Check lines fullfiled
+  *********/
+  function checkLine() {
+    var line =  [],
+        full =  [],
+        fields = t.FIELD;
+
+    $(t.FIELD).each(function(i,e){
+      console.log(e.top, e.left);
+      var top = e.top;
+      line[top] === undefined ? line[top] = [e.left] : line[top].push(e.left);
+
+      if(line[top].length == 10 ){
+        full.push(top);
+      }
+
+    });
+
+
+    var filteredFields = fields.filter(function(fields) {
+       return full.indexOf(fields.top) >= 0;
+    })
+
+
+    return filteredFields;
+  }
+
+
+
+
+
   function loadPieces() {
     return $.getJSON("js/pieces.json", function (data) {
       $(document).trigger("loaded", data);
@@ -137,6 +170,7 @@ t.pieces = (function() {
     loadPieces: loadPieces,
     createPiece: createPiece,
     addToStage: addToStage,
-    stagePiece: stagePiece
+    stagePiece: stagePiece,
+    checkLine: checkLine
   };
 })();
