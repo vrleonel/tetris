@@ -91,6 +91,7 @@ t.pieces = (function() {
       if(t.keys.moveDown($actual)) {
         clearInterval(interval);
         mapTetramino();
+        removeSq();
         //addToStage(); // add new piece into stage
       }
 
@@ -110,6 +111,15 @@ t.pieces = (function() {
     });
 
     $actual.remove();
+  }
+
+  function remap(){
+    var squares = $("#stage .sq");
+    t.FIELD = [];
+
+    squares.each( function (idx , val) {
+      t.FIELD.push( $(val).position() );
+    });
   }
 
 
@@ -155,29 +165,35 @@ t.pieces = (function() {
     var squares = $("#stage .sq"),
         lines   = checkLine();
 
-
     $.each(lines, function (i, v) {
-      console.log(v);
+
       var el = squares.filter(function (value){
         return $(this).position().top == v;
       });
       el.remove();
-    })
+
+
+    });
 
 
     // Do a new filter like
     // Math.max.apply(Math,lines);
-    //
-    //
-    // var el2 = $(".sq").filter(function (value){
-    //   var max = Math.max.apply(Math,lines);
-    //   return $(this).position().top < max;
-    // });
-    //
-    //
-    // el2.css({ top: "+="+ t.SQ})
+
+    setTimeout(function(){
+      var el2 = squares.filter(function (value){
+        var max = Math.max.apply(Math,lines);
+        return $(this).position().top < max;
+      });
+
+      el2.css({ top: "+="+ t.SQ*lines.length });
+
+      remap();
+
+    }, 300);
+
 
   }
+
 
 
 
