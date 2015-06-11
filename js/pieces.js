@@ -172,24 +172,35 @@ t.pieces = (function() {
       });
       el.remove();
 
+      setTimeout(function(){
+        var el2 = squares.filter(function (value){
+          return $(this).position().top < v;
+        });
+
+        el2.css({ top: "+="+ t.SQ});
+        remap();
+      }, 100);
+
+
+
 
     });
-
+    remap();
 
     // Do a new filter like
     // Math.max.apply(Math,lines);
 
-    setTimeout(function(){
-      var el2 = squares.filter(function (value){
-        var max = Math.max.apply(Math,lines);
-        return $(this).position().top < max;
-      });
-
-      el2.css({ top: "+="+ t.SQ*lines.length });
-
-      remap();
-
-    }, 300);
+    // setTimeout(function(){
+    //   var el2 = squares.filter(function (value){
+    //     var max = Math.max.apply(Math,lines);
+    //     return $(this).position().top < max;
+    //   });
+    //
+    //   el2.css({ top: "+="+ t.SQ*lines.length });
+    //
+    //   remap();
+    //
+    // }, 300);
 
 
   }
