@@ -92,7 +92,7 @@ t.pieces = (function() {
         clearInterval(interval);
         mapTetramino();
         removeSq();
-        //addToStage(); // add new piece into stage
+        addToStage(); // add new piece into stage
       }
 
       //t.keys.moveDown($actual);
@@ -186,21 +186,6 @@ t.pieces = (function() {
 
     });
     remap();
-
-    // Do a new filter like
-    // Math.max.apply(Math,lines);
-
-    // setTimeout(function(){
-    //   var el2 = squares.filter(function (value){
-    //     var max = Math.max.apply(Math,lines);
-    //     return $(this).position().top < max;
-    //   });
-    //
-    //   el2.css({ top: "+="+ t.SQ*lines.length });
-    //
-    //   remap();
-    //
-    // }, 300);
 
 
   }
