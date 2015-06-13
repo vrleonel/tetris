@@ -85,14 +85,18 @@ t.pieces = (function() {
 
   // Piece drop
   function drop() {
-    //var n = 0,
     var interval = setInterval(function(){
       //n++;
       if(t.keys.moveDown($actual)) {
+
         clearInterval(interval);
         mapTetramino();
         removeSq();
-        addToStage(); // add new piece into stage
+        if( endGame() > 0 ){
+          t.game.feedback("END GAME");
+        }else{
+          addToStage(); // add new piece into stage
+        }
       }
 
       //t.keys.moveDown($actual);
@@ -141,29 +145,20 @@ t.pieces = (function() {
 
     });
 
-
     var filteredFields = fields.filter(function(fields) {
        return full.indexOf(fields.top) >= 0;
     });
 
-
-    //return filteredFields;
     return full;
   }
 
 
-  function sqCol() {
-    var col = [];
-    for(i = 0; i < 10; i++){
-      col.push(i*t.SQ)
-    }
-    return col;
-  }
-
-  // Remove Squares
+  // if complete line, Remove Squares
   function removeSq(){
     var squares = $("#stage .sq"),
         lines   = checkLine();
+        console.log("LINES", lines.length);
+        t.game.score(lines.length * 100);
 
     $.each(lines, function (i, v) {
 
@@ -186,11 +181,21 @@ t.pieces = (function() {
 
     });
     remap();
-
-
   }
 
+ function endGame(){
+   var end    = [],
+       fields = t.FIELD;
 
+
+   var filtered = fields.filter(function(fields) {
+      return fields.top <= 0;
+   });
+
+   console.log("filtered", filtered.length);
+
+   return filtered.length;
+ }
 
 
   function loadPieces() {

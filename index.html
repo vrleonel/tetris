@@ -6,11 +6,23 @@
 </head>
 <body>
   <div id="game">
-    <div id="stage"> </div>
+    <div id="stage">
+      <div class="feedback"> START </div>
+    </div>
+
     <aside id="side">
       <h2>Pieces</h2>
       <hr/>
       <div id="pieces"></div>
+
+      <div class="score">
+
+        <h3>Score</h2>
+        <hr/>
+
+        <span class="qtd">0</span>
+      </div>
+
 
       <div class="buttons">
         <h3>Buttons</h2>
@@ -18,6 +30,8 @@
         <button class="start-game">Start</button>
         <button class="add-piece">Add Piece</button>
         <button class="move-to-stage">Move to Stage</button>
+
+
 
         <h3>Tetrominoes</h3>
           <button class="new-piece" data-type="O">O</button>

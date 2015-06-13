@@ -5,13 +5,35 @@ t.game = (function() {
       count = 1,
       land = "#screen",
       rotate = 0,
-      $itens ={};
+      $itens ={},
+      $feedback = $(t.FEEDBACK);
 
 
   function createPiece() {
 
 
   }
+
+  // MSG on the STAGE
+  function feedback(text){
+    if(text){
+      $feedback.html(text).fadeIn(300);
+    } else {
+      $feedback.fadeOut(300);
+    }
+  }
+
+  // Score
+  function score(q){
+    if(q == 400){
+      q = q*2
+    }
+    t.SCORE += q;
+
+    $(".qtd").html(t.SCORE);
+
+  }
+
 
   function bindEvents(){
     //  t.pieces.loadPieces().then(function (data) {
@@ -21,10 +43,17 @@ t.game = (function() {
     t.pieces.loadPieces();
 
     $(document).on("click", ".start-game", function (){
+
+      feedback("START");
+      setTimeout(function(){
+        feedback(false);
+
+        t.pieces.createPiece();
+        t.pieces.addToStage();
+      }, 300);
       //console.log("start");
       //t.pieces.loadPieces();
-      t.pieces.createPiece();
-      t.pieces.addToStage();
+
 
     });
 
@@ -46,6 +75,8 @@ t.game = (function() {
     init: function() {
       bindEvents();
     },
+    feedback: feedback,
+    score: score
   };
 })();
 t.game.init();
