@@ -88,15 +88,18 @@ t.pieces = (function() {
     var interval = setInterval(function(){
       //n++;
       if(t.keys.moveDown($actual)) {
-
         clearInterval(interval);
+
         mapTetramino();
         removeSq();
+
         if( endGame() > 0 ){
           t.game.feedback("END GAME");
         }else{
           addToStage(); // add new piece into stage
         }
+
+
       }
 
       //t.keys.moveDown($actual);
@@ -105,7 +108,6 @@ t.pieces = (function() {
   }
 
   // Remove from Span Add to Stage and Matrix map
-
   function mapTetramino(){
     var position = $actual.position();
 
@@ -113,6 +115,8 @@ t.pieces = (function() {
       $(val).appendTo("#stage").css({top: "+=" + position.top, left: "+=" + position.left });
       t.FIELD.push( $(val).position() );
     });
+
+    t.game.score(10);
 
     $actual.remove();
   }
@@ -158,6 +162,7 @@ t.pieces = (function() {
     var squares = $("#stage .sq"),
         lines   = checkLine();
         console.log("LINES", lines.length);
+
         t.game.score(lines.length * 100);
 
     $.each(lines, function (i, v) {

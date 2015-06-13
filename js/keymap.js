@@ -128,7 +128,9 @@ t.keys = (function() {
 
       if(e.keyCode == 40){ // Down
         console.log("Down");
-        moveDown(piece);
+        if(moveDown(piece) == false){
+          t.game.score(1);
+        }
       }
 
       if(e.keyCode == 37){ // left
