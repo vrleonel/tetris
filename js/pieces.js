@@ -11,7 +11,6 @@ t.pieces = (function() {
       side   = "#pieces";
 
   function createPiece(tetramino) {
-    console.log(tetramino);
     var pieceType   = (typeof tetramino === "undefined") ? type[rand(7)] : tetramino,
         piecePos    = $itens[pieceType].rotate,
         pieceLen    = piecePos.length,
@@ -21,7 +20,6 @@ t.pieces = (function() {
                         "piecePos"    : piecePos,
                         "pieceRotate" : pieceRotate
                       };
-    console.log("piece", pieceType);
 
     $next = newPiece(pieceName, piecePos[pieceRotate], $itens[pieceType].color);
     $.extend( $next, obj );
@@ -31,7 +29,7 @@ t.pieces = (function() {
 
 
   function newPiece(name, positions, color){
-    var container = $("<span>").addClass(name).appendTo(side);
+    var container =  $("<span>").addClass(name);
 
 
     $.each(positions, function(i, v){
@@ -41,7 +39,9 @@ t.pieces = (function() {
       .data("position", { top: "0", left: "0" })
       .css({ top: v.top*sq, left: v.left*sq });
     });
-    console.log("container", container);
+
+    $(side).html(container);
+
     return container;
   }
 
@@ -98,12 +98,7 @@ t.pieces = (function() {
         }else{
           addToStage(); // add new piece into stage
         }
-
-
       }
-
-      //t.keys.moveDown($actual);
-      // $actual.stop().animate({top: '+='+sq},300);
     },700);
   }
 
@@ -153,7 +148,7 @@ t.pieces = (function() {
        return full.indexOf(fields.top) >= 0;
     });
 
-    return full;
+    return full.sort();
   }
 
 
@@ -161,7 +156,7 @@ t.pieces = (function() {
   function removeSq(){
     var squares = $("#stage .sq"),
         lines   = checkLine();
-        console.log("LINES", lines.length);
+        console.log("LINES", lines.length, lines);
 
         t.game.score(lines.length * 100);
 
@@ -172,14 +167,14 @@ t.pieces = (function() {
       });
       el.remove();
 
-      setTimeout(function(){
+      //setTimeout(function(){
         var el2 = squares.filter(function (value){
           return $(this).position().top < v;
         });
 
         el2.css({ top: "+="+ t.SQ});
-        remap();
-      }, 100);
+        //remap();
+      //}, 100);
 
 
 
@@ -192,12 +187,10 @@ t.pieces = (function() {
    var end    = [],
        fields = t.FIELD;
 
-
    var filtered = fields.filter(function(fields) {
       return fields.top <= 0;
    });
 
-   console.log("filtered", filtered.length);
 
    return filtered.length;
  }
