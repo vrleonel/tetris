@@ -42,6 +42,25 @@
           <button class="new-piece" data-type="Z">Z</button>
           <button class="new-piece" data-type="T">T</button>
       </div>
+
+      <span>
+        Press M to mute
+      </span>
+
+
+      <audio id="music" loop preload="auto">
+        <source src="music/tetris.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
+      <audio id="fx-fit" preload="auto">
+        <source src="music/stall.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <audio id="fx-line" preload="auto">
+        <source src="music/chaow.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
     </aside>
   </div>
   <!-- Scripts -->
@@ -51,5 +70,6 @@
   <script src="js/pieces.js"></script>
   <script src="js/game.js"></script>
   <script src="js/keymap.js"></script>
+  <script src="js/music.js"></script>
 </body>
 </html>

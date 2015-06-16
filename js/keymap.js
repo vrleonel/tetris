@@ -40,8 +40,6 @@ t.keys = (function() {
     var pos    = positions[stateRotate],
         pass   = maxRotate(piece, pos);
 
-        console.log(pass);
-
     // Verify if is possible to rotate
     if ( pass === true ) {
       piece.pieceRotate = stateRotate;
@@ -127,40 +125,37 @@ t.keys = (function() {
       var piece = t.pieces.stagePiece();
 
       if(e.keyCode == 40){ // Down
-        console.log("Down");
         if(moveDown(piece) == false){
           t.game.score(1);
         }
       }
 
       if(e.keyCode == 37){ // left
-        console.log("Left");
         moveLeft(piece);
       }
 
       if(e.keyCode == 39){ // Right
-        console.log("Right");
         moveRight(piece);
       }
 
       if(e.keyCode == 38){ // up
-        console.log("Up");
         rotatePiece(piece);
       }
 
       if(e.keyCode == 32){ // space
-        console.log("Space");
         rotatePiece(piece);
       }
 
       if(e.keyCode == 65){ // A
-        console.log("A");
         t.pieces.createPiece();
       }
 
       if(e.keyCode == 90){ // Z
-        console.log("Z");
         t.pieces.addToStage();
+      }
+
+      if(e.keyCode == 77){ // M
+        $("body").trigger("pauseBgMusic", 1);
       }
 
     });

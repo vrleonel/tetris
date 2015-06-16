@@ -56,7 +56,6 @@ t.pieces = (function() {
 
     });
     return pos;
-    console.log("pos", arr);
   }
 
 
@@ -89,6 +88,7 @@ t.pieces = (function() {
       //n++;
       if(t.keys.moveDown($actual)) {
         clearInterval(interval);
+        $("body").trigger("fitTetramino");
 
         mapTetramino();
         removeSq();
@@ -156,9 +156,11 @@ t.pieces = (function() {
   function removeSq(){
     var squares = $("#stage .sq"),
         lines   = checkLine();
-        console.log("LINES", lines.length, lines);
+        //console.log("LINES", lines.length, lines);
 
-        t.game.score(lines.length * 100);
+    t.game.score(lines.length * 100);
+
+
 
     $.each(lines, function (i, v) {
 
@@ -175,10 +177,7 @@ t.pieces = (function() {
         el2.css({ top: "+="+ t.SQ});
         //remap();
       //}, 100);
-
-
-
-
+      $("body").trigger("lineClear");
     });
     remap();
   }

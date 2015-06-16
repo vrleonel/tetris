@@ -9,11 +9,6 @@ t.game = (function() {
       $feedback = $(t.FEEDBACK);
 
 
-  function createPiece() {
-
-
-  }
-
   // MSG on the STAGE
   function feedback(text){
     if(text){
@@ -45,9 +40,10 @@ t.game = (function() {
     $(document).on("click", ".start-game", function (){
 
       feedback("START");
+      $("body").trigger("startGame");
+
       setTimeout(function(){
         feedback(false);
-
         t.pieces.createPiece();
         t.pieces.addToStage();
       }, 300);
