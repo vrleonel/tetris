@@ -158,6 +158,10 @@ t.keys = (function() {
         $("body").trigger("pauseBgMusic", 1);
       }
 
+      if(e.keyCode = 80 ){
+        $("body").trigger("pauseGame", 1);
+      }
+
     });
   }
 

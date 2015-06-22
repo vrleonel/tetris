@@ -42,6 +42,8 @@ t.game = (function() {
       feedback("START");
       $("body").trigger("startGame");
 
+      $(this).attr("disabled", "disabled");
+
       setTimeout(function(){
         feedback(false);
         t.pieces.createPiece();
