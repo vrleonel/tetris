@@ -7,7 +7,8 @@ window.t = {
   STAGE_ID      : "#stage",
   SCORE         : 0,
   FEEDBACK      : ".feedback",
-
+  PAUSE         : false,
+  INTERVAL      : 0,
 
 
   init : function () {

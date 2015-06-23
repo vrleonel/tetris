@@ -84,10 +84,11 @@ t.pieces = (function() {
 
   // Piece drop
   function drop() {
-    var interval = setInterval(function(){
+    t.INTERVAL = setInterval(function(){
+
       //n++;
       if(t.keys.moveDown($actual)) {
-        clearInterval(interval);
+        clearInterval(t.INTERVAL);
         $("body").trigger("fitTetramino");
 
         mapTetramino();
@@ -222,6 +223,7 @@ t.pieces = (function() {
     addToStage: addToStage,
     stagePiece: stagePiece,
     checkLine: checkLine,
-    removeSq: removeSq
+    removeSq: removeSq,
+    drop
   };
 })();

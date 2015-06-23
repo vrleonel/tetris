@@ -124,27 +124,36 @@ t.keys = (function() {
     $(document).on("keydown",function(e) {
       var piece = t.pieces.stagePiece();
 
-      if(e.keyCode == 40){ // Down
-        if(moveDown(piece) == false){
-          t.game.score(1);
+      if(t.PAUSE === false){
+
+        if(e.keyCode == 40){ // Down
+          if(moveDown(piece) === false){
+            t.game.score(1);
+          }
+
         }
-      }
 
-      if(e.keyCode == 37){ // left
-        moveLeft(piece);
-      }
+        if(e.keyCode == 37){ // left
+          moveLeft(piece);
+        }
 
-      if(e.keyCode == 39){ // Right
-        moveRight(piece);
-      }
+        if(e.keyCode == 39){ // Right
+          moveRight(piece);
+        }
 
-      if(e.keyCode == 38){ // up
-        rotatePiece(piece);
-      }
+        if(e.keyCode == 38){ // up
+          if(t.PAUSE === false){
+            rotatePiece(piece);
+          }
+        }
 
-      if(e.keyCode == 32){ // space
-        rotatePiece(piece);
-      }
+        if(e.keyCode == 32){ // space
+          if(t.PAUSE === false){
+            rotatePiece(piece);
+          }
+        }
+
+      } // paused
 
       if(e.keyCode == 65){ // A
         t.pieces.createPiece();
@@ -158,8 +167,14 @@ t.keys = (function() {
         $("body").trigger("pauseBgMusic", 1);
       }
 
-      if(e.keyCode = 80 ){
-        $("body").trigger("pauseGame", 1);
+      if(e.keyCode == 80 ){ // P -> Pause
+        if(t.PAUSE  === false ){
+          clearInterval(t.INTERVAL);
+          t.PAUSE = true;
+        } else {
+          t.pieces.drop();
+          t.PAUSE = false;
+        }
       }
 
     });
