@@ -1,9 +1,9 @@
 Tetris HTML
 ===========
 
-  Tetris made just with CSS, HTML and JS
-  http://en.wikipedia.org/wiki/Tetris
-  http://tetris.wikia.com/wiki/Tetris_Guideline
+  * Tetris made just with CSS, HTML and JS
+  * http://en.wikipedia.org/wiki/Tetris
+  * http://tetris.wikia.com/wiki/Tetris_Guideline
 
 Installation
 ------------
@@ -13,7 +13,7 @@ Installation
 Usage
 -----
 
-  todo
+  Demo: http://vrleonel.com.br/demo/tetris/
 
 Usage
 -----
